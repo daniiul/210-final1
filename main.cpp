@@ -3,6 +3,7 @@
 #include <ctime>
 #include <deque>
 #include <vector>
+#include <list>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ struct coffeeNode
 
 struct muffin
 {
+    string name;
     string type;
 };
 
@@ -22,6 +24,12 @@ struct bracelet
 {
     string name;
     string color;
+};
+
+struct cake
+{
+    string name;
+    string type;
 };
 
 class coffeeBooth
@@ -74,6 +82,7 @@ public:
     void print()
     {
         cout << "Current coffee line: " << endl;
+        cout << head.name;
         coffeeNode* temp = head;
         if (!temp)
         {
@@ -98,6 +107,8 @@ int main()
     string drinks[ARRSIZE] = {"Coffee", "Tea", "Water", "Frapuchino", "Caffe Latte", "Hot Coco", "Milk", "Pumpkin Latte", "Fruit Shake", "Ice Cream Shake"};
     string muffins[ARRSIZE] = {"Blueberry", "Strawberry", "Bannana", "Chocolate Chip", "English", "Brownie", "Vanilla", "Regular", "American", "Safeway"};
     string colors[ARRSIZE] = {"Red", "White", "Blue", "Orange", "Purple", "Light Blue", "Violet", "Teal", "Rainbow", "Black"};
+    string cakes[ARRSIZE] = {"Napolean", "Strawberry", "Chocolate Chip", "Vanilla", "Cheesekake", "Kiyv'skiy", "Fruit", "Ice cream", "Custom Design", "Blueberry"};
+
 
     vector<bracelet> braceletLine;
     for (int i = 0; i < 3; i++)
@@ -112,12 +123,23 @@ int main()
     for (int i = 0; i < 3; i++)
     {
         muffin temp;
+        temp.name = names[rand() % ARRSIZE];
         temp.type = muffins[rand() % ARRSIZE];
         muffinLine.push_back(temp);
     }
 
+    list<cake> cakeLine;
+    for (int i = 0; i < 3; i++)
+    {
+        cake temp;
+        temp.name = names[rand() % ARRSIZE];
+        temp.type = cakes[rand() % ARRSIZE];
+        cakeLine.push_back(temp);
+    }
+
     coffeeBooth Line1;
     Line1.push_back(names[rand() % ARRSIZE], drinks[rand() %  ARRSIZE]);
+    Line1.print();
     Line1.push_back(names[rand() % ARRSIZE], drinks[rand() %  ARRSIZE]);
     Line1.push_back(names[rand() % ARRSIZE], drinks[rand() %  ARRSIZE]);
     Line1.print();
@@ -131,6 +153,7 @@ int main()
             Line1.push_back(names[rand() % ARRSIZE], drinks[rand() %  ARRSIZE]);
             // muffin line
             muffin temp;
+            temp.name = names[rand() % ARRSIZE];
             temp.type = muffins[rand() % ARRSIZE];
             muffinLine.push_back(temp);
             // bracelet line
@@ -138,6 +161,11 @@ int main()
             tempbracelet.name = names[rand() % ARRSIZE];
             tempbracelet.color = colors[rand() % ARRSIZE];
             braceletLine.push_back(tempbracelet);
+            // cake line
+            cake tempcake;
+            tempcake.name = names[rand() % ARRSIZE];
+            tempcake.type = cakes[rand() % ARRSIZE];
+            cakeLine.push_back(tempcake);
         }
         Line1.serve_customer();
         Line1.print();
@@ -145,6 +173,8 @@ int main()
             muffinLine.pop_front();
         if(!braceletLine.empty())
             braceletLine.erase(braceletLine.begin());
+        if(!cakeLine.empty())
+            cakeLine.pop_front();
 
     }
     return 0;
