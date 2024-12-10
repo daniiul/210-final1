@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+
 using namespace std;
 
 struct coffeeNode
@@ -10,13 +11,13 @@ struct coffeeNode
     coffeeNode* next;
 };
 
-class linkedlist
+class coffeBooth
 {
 private:
     coffeeNode* head;
 
 public:
-    linkedlist()
+    coffeeBooth()
     {
         head = nullptr;
     }
@@ -33,15 +34,33 @@ public:
         else
         {
             coffeeNode* temp = head;
-        }
+            while (temp->next)
+                temp = temp->next;
 
-        if ()
+            temp->next = newCustomer;
+        }
+    }
+    void serve_customer()
+    {
+        coffeeNode* temp = head->next;
+        temp->next = head->next->next;
+        head = temp;
     }
 
 };
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    const int ARRSIZE = 10;
+    string names[ARRSIZE] = ["Charles", "Layla", "Daniel", "Maggie", "Colin", "Hillary", "Kiyan", "Pedro", "Anna", "Homer"];
+    string drinks[ARRSIZE] = ["Coffee", "Tea", "Water", "Frapuchino", "Caffe Latte", "Hot Coco", "Milk", "Pumpkin Latte", "Fruit Shake", "Ice Cream Shake"];
+
+    coffeBooth Line1;
+
+    Line1.push_back(names[rand % ARRSIZE], drinks[rand % ARRSIZE]);
+    Line1.push_back(names[rand % ARRSIZE], drinks[rand % ARRSIZE]);
+    Line1.push_back(names[rand % ARRSIZE], drinks[rand % ARRSIZE]);
+
+    for (int i = 0, i )
     return 0;
 }
