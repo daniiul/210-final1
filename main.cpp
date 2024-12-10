@@ -1,3 +1,5 @@
+// COMSC-210 | Final 1 | Daniil Malakhov
+// IDE used: Codeblocks
 #include <iostream>
 #include <string>
 #include <ctime>
@@ -94,7 +96,6 @@ public:
         }
         cout << "    Name: " << temp->name << "  Drink: " << temp->drink << endl;
     }
-
 };
 
 void muffinLinePrint(deque<muffin>& muffinLine);
@@ -147,40 +148,59 @@ int main()
 
     for (int i = 0; i < 10; i++)
     {
-        int prob = rand() % 100 + 1;
-        if (prob <= 50)
+        int prob1 = rand() % 100 + 1;
+        int prob2 = rand() % 100 + 1;
+        int prob3 = rand() % 100 + 1;
+        int prob4 = rand() % 100 + 1;
+
+        Line1.serve_customer();
+
+        if(!muffinLine.empty())
+            muffinLine.pop_front();
+
+        if(!braceletLine.empty())
+            braceletLine.erase(braceletLine.begin());
+
+        if(!cakeLine.empty())
+            cakeLine.pop_front();
+
+        if (prob1 <= 50)
         {
             // coffee line
             Line1.push_back(names[rand() % ARRSIZE], drinks[rand() %  ARRSIZE]);
+        }
+        if (prob2 <= 50)
+        {
             // muffin line
             muffin temp;
             temp.name = names[rand() % ARRSIZE];
             temp.type = muffins[rand() % ARRSIZE];
             muffinLine.push_back(temp);
+        }
+        if (prob3 <= 50)
+        {
             // bracelet line
             bracelet tempbracelet;
             tempbracelet.name = names[rand() % ARRSIZE];
             tempbracelet.color = colors[rand() % ARRSIZE];
             braceletLine.push_back(tempbracelet);
+        }
+        if (prob4 <= 50)
+        {
+
             // cake line
             cake tempcake;
             tempcake.name = names[rand() % ARRSIZE];
             tempcake.type = cakes[rand() % ARRSIZE];
             cakeLine.push_back(tempcake);
         }
-        Line1.serve_customer();
+
         Line1.print();
 
-        if(!muffinLine.empty())
-            muffinLine.pop_front();
         muffinLinePrint(muffinLine);
 
-        if(!braceletLine.empty())
-            braceletLine.erase(braceletLine.begin());
         braceletLinePrint(braceletLine);
 
-        if(!cakeLine.empty())
-            cakeLine.pop_front();
         cakeLinePrint(cakeLine);
         cout << endl;
     }
