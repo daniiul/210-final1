@@ -99,7 +99,7 @@ public:
 
 void muffinLinePrint(deque<muffin>& muffinLine);
 void braceletLinePrint(vector<bracelet>& braceletLine);
-void cake
+void cakeLinePrint(list<cake>& cakeLine);
 
 int main()
 {
@@ -173,12 +173,50 @@ int main()
 
         if(!muffinLine.empty())
             muffinLine.pop_front();
+        muffinLinePrint(muffinLine);
 
         if(!braceletLine.empty())
             braceletLine.erase(braceletLine.begin());
+        braceletLinePrint(braceletLine);
+
         if(!cakeLine.empty())
             cakeLine.pop_front();
-
+        cakeLinePrint(cakeLine);
+        cout << endl;
     }
     return 0;
+}
+
+void muffinLinePrint(deque<muffin>& muffinLine)
+{
+    cout << "Current Muffin Booth Line: " << endl;\
+    if(muffinLine.empty())
+        cout << "    The line is empty!" << endl;
+    for(auto it: muffinLine)
+    {
+        cout << "    Name: " << it.name << "  Muffin: " << it.type << endl;
+    }
+}
+
+
+void braceletLinePrint(vector<bracelet>& braceletLine)
+{
+    cout << "Current Friendship Bracelet Booth Line: " << endl;
+    if(braceletLine.empty())
+        cout << "    The line is empty!" << endl;
+    for(auto it: braceletLine)
+    {
+        cout << "    Name: " << it.name << "  Color: " << it.color << endl;
+    }
+}
+
+void cakeLinePrint(list<cake>& cakeLine)
+{
+    cout << "Current Cake Booth Line: " << endl;
+    if(cakeLine.empty())
+        cout << "    The line is empty!" << endl;
+    for(auto it: cakeLine)
+    {
+        cout << "    Name: " << it.name << "  Type: " << it.type << endl;
+    }
 }
