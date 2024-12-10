@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-
+#include <ctime>
 
 using namespace std;
 
@@ -11,7 +11,7 @@ struct coffeeNode
     coffeeNode* next;
 };
 
-class coffeBooth
+class coffeeBooth
 {
 private:
     coffeeNode* head;
@@ -23,23 +23,19 @@ public:
     }
     void push_back(string n, string d)
     {
-        cout << "work";
         coffeeNode* newCustomer = new coffeeNode();
         newCustomer->name = n;
         newCustomer->drink = d;
         newCustomer->next = nullptr;
-        cout << "work";
-        if (!head)
+        if(head == nullptr)
         {
             head = newCustomer;
-            cout << "work";
         }
         else
         {
             coffeeNode* temp = head;
             while (temp->next)
                 temp = temp->next;
-            cout << "work";
             temp->next = newCustomer;
         }
 
@@ -65,19 +61,18 @@ public:
 
 int main()
 {
+    srand(time(0));
+
     const int ARRSIZE = 10;
     string names[ARRSIZE] = {"Charles", "Layla", "Daniel", "Maggie", "Colin", "Hillary", "Kiyan", "Pedro", "Anna", "Homer"};
     string drinks[ARRSIZE] = {"Coffee", "Tea", "Water", "Frapuchino", "Caffe Latte", "Hot Coco", "Milk", "Pumpkin Latte", "Fruit Shake", "Ice Cream Shake"};
 
-    coffeBooth Line1;
-
-
+    coffeeBooth Line1;
 
     Line1.push_back(names[rand() % ARRSIZE], drinks[rand() %  ARRSIZE]);
     Line1.push_back(names[rand() % ARRSIZE], drinks[rand() %  ARRSIZE]);
     Line1.push_back(names[rand() % ARRSIZE], drinks[rand() %  ARRSIZE]);
     Line1.print();
-    cout << "work";
 
     for (int i = 0; i < 10; i++)
     {
