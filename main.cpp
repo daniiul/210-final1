@@ -63,26 +63,24 @@ public:
     }
     void serve_customer()
     {
-        if(head->next->next)
+        if(!head)
+            return;
+
+        coffeeNode* temp = head;
+
+        if(head->next)
         {
-            coffeeNode* temp = head->next;
-            temp->next = head->next->next;
-            head = temp;
-        }
-        else if (head->next)
-        {
-            coffeeNode* temp = head->next;
-            head = temp;
+            head = head->next;
         }
         else
         {
             head = nullptr;
         }
+        delete temp;
     }
     void print()
     {
         cout << "Current coffee line: " << endl;
-        cout << head.name;
         coffeeNode* temp = head;
         if (!temp)
         {
@@ -94,9 +92,14 @@ public:
             cout << "    Name: " << temp->name << "  Drink: " << temp->drink << endl;
             temp = temp->next;
         }
+        cout << "    Name: " << temp->name << "  Drink: " << temp->drink << endl;
     }
 
 };
+
+void muffinLinePrint(deque<muffin>& muffinLine);
+void braceletLinePrint(vector<bracelet>& braceletLine);
+void cake
 
 int main()
 {
@@ -139,10 +142,8 @@ int main()
 
     coffeeBooth Line1;
     Line1.push_back(names[rand() % ARRSIZE], drinks[rand() %  ARRSIZE]);
-    Line1.print();
     Line1.push_back(names[rand() % ARRSIZE], drinks[rand() %  ARRSIZE]);
     Line1.push_back(names[rand() % ARRSIZE], drinks[rand() %  ARRSIZE]);
-    Line1.print();
 
     for (int i = 0; i < 10; i++)
     {
@@ -169,8 +170,10 @@ int main()
         }
         Line1.serve_customer();
         Line1.print();
+
         if(!muffinLine.empty())
             muffinLine.pop_front();
+
         if(!braceletLine.empty())
             braceletLine.erase(braceletLine.begin());
         if(!cakeLine.empty())
